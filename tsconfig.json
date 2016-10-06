@@ -1,6 +1,9 @@
 {
-  "files": [
-    "src/**"
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/*.spec.ts"
   ],
   "compilerOptions": {
     "noImplicitAny": true,

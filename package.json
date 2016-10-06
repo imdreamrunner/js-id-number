@@ -5,17 +5,23 @@
   "main": "./dist/amd/IDValidators.js",
   "types": "./dist/amd/IDValidators.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp build-commonjs && tsc test/**.ts --module commonjs && mocha"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.45",
     "gulp": "^3.9.1",
     "gulp-amdclean": "^1.1.1",
     "gulp-typescript": "^3.0.1",
     "gulp-webserver": "^0.9.1",
     "merge2": "^1.0.2",
+    "mocha": "^3.1.0",
     "requirejs": "^2.3.2",
     "typescript": "^2.0.3"
+  },
+  "dependencies": {
+    "assert": "^1.4.1"
   }
 }
