@@ -2,7 +2,7 @@
 
 import * as assert from 'assert';
 
-const IDValidators = require('../dist/commonjs/IDValidators');
+const IDValidators = require('../dist/node/IDValidators');
 
 describe('IDValidators', () => {
     beforeEach(function () {
@@ -10,11 +10,8 @@ describe('IDValidators', () => {
 
     describe('#getValidator', () => {
         it('should return a function.', () => {
-            console.log('here');
-            console.log(IDValidators);
             const validator = IDValidators.getValidator('SG', 'IC');
-            // console.log(validator);
-            // assert.equal(typeof validator, 'function');
+            assert.equal(typeof validator, 'function');
         });
     });
 });

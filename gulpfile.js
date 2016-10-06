@@ -31,6 +31,21 @@ gulp.task("build-plain", ["build"], function () {
         .pipe(gulp.dest("dist/bin"));
 });
 
+gulp.task("build-node", ["build"], function () {
+    return gulp
+        .src(["dist/amd/IDValidators.js"])
+        .pipe(amdclean.gulp({
+            prefixMode: "standard",
+            wrap: {
+                // This string is prepended to the file
+                start: "// IDValidators\n",
+                // This string is appended to the file
+                end: "\nmodule.exports=IDValidators;"
+            }
+        }))
+        .pipe(gulp.dest("dist/node"));
+});
+
 gulp.task("webserver", function() {
     gulp.src(".")
         .pipe(webserver({
