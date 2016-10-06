@@ -1,0 +1,21 @@
+{
+  "name": "js-id-number-validator",
+  "version": "1.0.0",
+  "description": "JavaScript ID Number Validator",
+  "main": "./dist/amd/IDValidators.js",
+  "types": "./dist/amd/IDValidators.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-amdclean": "^1.1.1",
+    "gulp-typescript": "^3.0.1",
+    "gulp-webserver": "^0.9.1",
+    "merge2": "^1.0.2",
+    "requirejs": "^2.3.2",
+    "typescript": "^2.0.3"
+  }
+}
