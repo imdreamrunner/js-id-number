@@ -1,6 +1,6 @@
 ///<reference path='types.ts'/>
 
-namespace IDValidators.sg {
+namespace IDValidator.sg {
     function validateNRIC(str: string) {
         // Modified from https://gist.github.com/eddiemoore/7131781
         // Originally base on Based on http://www.samliew.com/icval/

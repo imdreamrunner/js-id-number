@@ -1,6 +1,6 @@
 ///<reference path='types.ts'/>
-var IDValidators;
-(function (IDValidators) {
+var IDValidator;
+(function (IDValidator) {
     var sg;
     (function (sg) {
         function validateNRIC(str) {
@@ -49,13 +49,13 @@ var IDValidators;
             };
         }
         sg.validateSGIC = validateSGIC;
-    })(sg = IDValidators.sg || (IDValidators.sg = {}));
-})(IDValidators || (IDValidators = {}));
+    })(sg = IDValidator.sg || (IDValidator.sg = {}));
+})(IDValidator || (IDValidator = {}));
 ///<reference path='types'/>
 ///<reference path='sg'/>
 define("IDValidators", ["require", "exports"], function (require, exports) {
     "use strict";
-    var validateSGIC = IDValidators.sg.validateSGIC;
+    var validateSGIC = IDValidator.sg.validateSGIC;
     function getValidator(country, document) {
         return validateSGIC;
     }

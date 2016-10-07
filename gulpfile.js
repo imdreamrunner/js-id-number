@@ -55,4 +55,4 @@ gulp.task("webserver", function() {
         }));
 });
 
-gulp.task("default", ["build", "build-plain"]);
+gulp.task("default", ["build", "build-plain", "build-node"]);
