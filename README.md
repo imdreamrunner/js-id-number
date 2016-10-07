@@ -13,11 +13,17 @@ Step 1, install.
 You can install IDValidators by
 
 * directly import in browser
-  <script src="dist/bin/IDValidators.js"></script>
+
+  `<script src="dist/bin/IDValidators.js"></script>`
+  
 * using in node.js
-  const IDValidators = require('../dist/node/IDValidators');
+
+  `const IDValidators = require('../dist/node/IDValidators');`
+  
 * require as amd module
-  const IDValidators = require('../dist/amd/IDValidators');
+
+  `const IDValidators = require('../dist/amd/IDValidators');`
+  
 
 Step 2, get a validator.
 
