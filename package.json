@@ -5,6 +5,7 @@
   "main": "./dist/amd/IDValidators.js",
   "types": "./dist/amd/IDValidators.d.ts",
   "scripts": {
+    "build": "gulp",
     "test": "gulp build-node && tsc test/**.ts --module commonjs && mocha"
   },
   "author": "",

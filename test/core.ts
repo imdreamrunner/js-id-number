@@ -10,7 +10,7 @@ describe('IDValidators', () => {
 
     describe('#getValidator', () => {
         it('should return a function.', () => {
-            const validator = IDValidators.getValidator('SG', 'IC');
+            const validator = IDValidators.getValidator('SG', 'NRIC');
             assert.equal(typeof validator, 'function');
         });
     });
