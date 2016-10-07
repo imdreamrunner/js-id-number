@@ -1,6 +1,6 @@
 {
   "name": "js-id-number-validator",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "JavaScript ID Number Validator",
   "main": "./dist/amd/IDValidators.js",
   "types": "./dist/amd/IDValidators.d.ts",
@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "assert": "^1.4.1"
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.45",
     "gulp": "^3.9.1",
@@ -21,8 +22,5 @@
     "mocha": "^3.1.0",
     "requirejs": "^2.3.2",
     "typescript": "^2.0.3"
-  },
-  "dependencies": {
-    "assert": "^1.4.1"
   }
 }
