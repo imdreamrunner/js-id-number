@@ -18,7 +18,7 @@ You can install IDValidators by
   
 * using in node.js
 
-  `const IDValidators = require('../dist/node/IDValidators');`
+  The library is available at NPM with name [`node-id-number-validator`](https://www.npmjs.com/package/node-id-number-validator).
   
 * require as amd module
 
@@ -58,4 +58,10 @@ And the result is in format:
 To build: `npm run build`
 
 To test: `npm test`
+
+## Bonus
+
+We have a very good [wiki](https://github.com/imdreamrunner/js-id-number-validator/wiki)
+that explain the algorithm of the ID number checksum used by different 
+identity documents.
 
