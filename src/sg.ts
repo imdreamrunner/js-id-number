@@ -5,8 +5,11 @@ namespace IDValidator.sg {
         // Modified from https://gist.github.com/eddiemoore/7131781
         // Originally base on Based on http://www.samliew.com/icval/
 
-        if (str.length != 9)
+        if (!str || str.length != 9)
             return 'error_length';
+
+        if (!/^[SFGT]\d{7}[A-Z]$/i.test(str))
+            return 'error_format';
 
         str = str.toUpperCase();
 

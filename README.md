@@ -51,6 +51,7 @@ And the result is in format:
 | Country | Document |
 |:-------:|:--------:|
 | SG (Singapore) | NRIC |
+| TW (Taiwan) | ID (身份證字號) |
 
 
 ## Development
