@@ -1,8 +1,9 @@
-///<reference path='types.ts'/>
+///<reference path='../types.ts'/>
 
-namespace IDValidator.tw {
+import {InternalValidator, InternalValidateResult, ErrorCode} from "../types";
 
-    function getTWIDFirstCode(c: string) {
+export default class TaiwanIDValidator implements InternalValidator {
+    static getTWIDFirstCode(c: string) {
         if (c == 'I') {
             return 34;
         }
@@ -20,25 +21,25 @@ namespace IDValidator.tw {
         }
     }
 
-    export function validateTWID(ic: string): ValidateResult {
-        if (!ic || ic.length !== 10) {
+    validate(id:string):InternalValidateResult {
+        if (!id || id.length !== 10) {
             return {
-                result: false,
-                reason: 'error_length'
+                success: false,
+                reason: ErrorCode.error_length
             };
         }
 
-        if (!/^[A-Z]\d{9}$/i.test(ic)) {
+        if (!/^[A-Z]\d{9}$/i.test(id)) {
             return {
-                result: false,
-                reason: 'error_format'
+                success: false,
+                reason: ErrorCode.error_format
             };
         }
 
-        const start = ic.charAt(0);
-        const mid = ic.substring(1, 9);
-        const end = ic.charAt(9);
-        const iStart = getTWIDFirstCode(start);
+        const start = id.charAt(0);
+        const mid = id.substring(1, 9);
+        const end = id.charAt(9);
+        const iStart = TaiwanIDValidator.getTWIDFirstCode(start);
 
         let sum = Math.floor(iStart / 10) + (iStart % 10) * 9;
         let iflag = 8;
@@ -51,14 +52,14 @@ namespace IDValidator.tw {
         const checksumCorrect = (sum % 10 == 0 ? 0 : (10 - sum % 10)) == parseInt(end, 10);
         if (checksumCorrect) {
             return {
-                result: true
+                success: true
             };
         } else {
             return {
-                result: false,
-                reason: 'error_checksum'
+                success: false,
+                reason: ErrorCode.error_checksum
             };
         }
-
     }
+
 }

@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>ID Number Validators</title>
+</head>
+<body>
+<h1>ID Number Validator</h1>
+<p>
+    This ID Number Validator is powered by
+    <a href="https://github.com/imdreamrunner/js-id-number-validator">js-id-number-validator</a>.
+    It's a collection of identification number validators with uniform interfaces for JavaScript,
+    available for using in browsers and installed via NPM.
+</p>
+
+<h2>Validators</h2>
+<p>Please do not block the alerts from browsers.</p>
+
+<h3>Singapore NRIC Validator</h3>
+<input id="sg-nric">
+<input onclick="validate('SG', 'NRIC', 'sg-nric')" type="button" value="Validate!">
+
+<h3>Tanwan ID Validator 台灣身份證字號驗證</h3>
+<input id="tw-id">
+<input onclick="validate('TW', 'ID', 'tw-id')" type="button" value="Validate!">
+
+<h3>Chinese ID Validator 中国大陆公民身份号(居民身份证号码)</h3>
+<input id="cn-id">
+<input onclick="validate('CN', 'ID', 'cn-id')" type="button" value="Validate!">
+
+<p>
+    Author: <a href="http://blog.dreamrunner.space/about.html">Ivor</a>
+    and <a href="https://github.com/imdreamrunner/js-id-number-validator/graphs/contributors">GitHub contributors</a>.
+</p>
+
+<script src="dist/bin/IDValidators.js"></script>
+
+<script>
+    function displayOutput(output) {
+        if (output.success) {
+            var message = "Success.";
+            if (output.extra) {
+                message += '\n' + JSON.stringify(output.extra);
+            }
+            alert(message)
+        } else {
+            alert("Error: " + output.reason);
+        }
+    }
+
+    function validate(country, type, input) {
+        var validator = IDValidators.getValidator(country, type);
+        var output = validator(document.getElementById(input).value);
+        displayOutput(output)
+    }
+</script>
+</body>
+</html>

@@ -1,31 +1,25 @@
 export interface InternalValidator {
-    validate(id: string) : InternalValidateResult;
+    validate(id: string): InternalValidateResult;
 }
-
 export interface Validator {
-    (id: string) : ValidateResult;
+    (id: string): ValidateResult;
 }
-
 export interface ExtraData {
     [key: string]: any;
 }
-
-
 export interface InternalValidateResult {
     success: boolean;
     reason?: ErrorCode;
     extra?: ExtraData;
 }
-
 export interface ValidateResult {
     success: boolean;
     reason?: string;
     extra?: ExtraData;
 }
-
-export enum ErrorCode {
-    error_input_variable,  // Input variable is null or not string.
-    error_checksum,  // Input ID number fails the checksum validation.
-    error_length,
-    error_format,
+export declare enum ErrorCode {
+    error_input_variable = 0,
+    error_checksum = 1,
+    error_length = 2,
+    error_format = 3,
 }

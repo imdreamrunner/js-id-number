@@ -1,15 +1,19 @@
 {
-  "name": "js-id-number-validator",
-  "version": "0.0.3",
+  "name": "id-number-validator",
+  "version": "0.0.8",
   "description": "JavaScript ID Number Validator",
-  "main": "./dist/amd/IDValidators.js",
-  "types": "./dist/amd/IDValidators.d.ts",
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
   "scripts": {
     "build": "gulp",
-    "test": "gulp build-node && tsc test/**.ts --module commonjs && mocha"
+    "test": "gulp build && tsc test/**.ts --module commonjs && mocha"
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imdreamrunner/js-id-number-validator.git"
+  },
   "devDependencies": {
     "assert": "^1.4.1",
     "@types/mocha": "^2.2.32",

@@ -5,6 +5,19 @@ var amdclean = require("gulp-amdclean");
 var webserver = require("gulp-webserver");
 
 gulp.task("build", function () {
+    // Build CommonJS library.
+    var tsProject = ts.createProject("tsconfig.json", {
+        module: "commonjs"
+    });
+    var tsResult = tsProject.src().pipe(tsProject());
+    return merge2([
+        tsResult.js.pipe(gulp.dest("dist/commonjs")),
+        tsResult.dts.pipe(gulp.dest("dist/commonjs"))
+    ]);
+});
+
+gulp.task("build-amd", function () {
+    // Build CommonJS library.
     var tsProject = ts.createProject("tsconfig.json", {
         module: "amd",
         outFile: "IDValidators.js"
@@ -16,7 +29,8 @@ gulp.task("build", function () {
     ]);
 });
 
-gulp.task("build-plain", ["build"], function () {
+gulp.task("build-plain", ["build-amd"], function () {
+    // Build library for browser.
     return gulp
         .src(["dist/amd/IDValidators.js"])
         .pipe(amdclean.gulp({
@@ -25,25 +39,10 @@ gulp.task("build-plain", ["build"], function () {
                 // This string is prepended to the file
                 start: ";(function(global) {\n",
                 // This string is appended to the file
-                end: "\nglobal.IDValidators=IDValidators;}(window));"
+                end: "\nglobal.IDValidators=index.default;}(window));"
             }
         }))
         .pipe(gulp.dest("dist/bin"));
-});
-
-gulp.task("build-node", ["build"], function () {
-    return gulp
-        .src(["dist/amd/IDValidators.js"])
-        .pipe(amdclean.gulp({
-            prefixMode: "standard",
-            wrap: {
-                // This string is prepended to the file
-                start: "// IDValidators\n",
-                // This string is appended to the file
-                end: "\nmodule.exports=IDValidators;"
-            }
-        }))
-        .pipe(gulp.dest("dist/node"));
 });
 
 gulp.task("webserver", function() {
@@ -55,4 +54,4 @@ gulp.task("webserver", function() {
         }));
 });
 
-gulp.task("default", ["build", "build-plain", "build-node"]);
+gulp.task("default", ["build", "build-plain"]);

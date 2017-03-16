@@ -6,6 +6,8 @@ JavaScript ID Number Validator
 This is a collection of validators of identity document number
 for JavaScript applications.
 
+[Demo](http://id-number-validator.dreamrunner.space/)
+
 ## Usage
 
 Step 1, install.
@@ -14,17 +16,30 @@ You can install IDValidators by
 
 * directly import in browser
 
-  `<script src="dist/bin/IDValidators.js"></script>`
+  ```html
+  <script src="dist/bin/IDValidators.js"></script>
+  <!-- Please edit the URL above. -->
+  ```
   
-* using in node.js
-
-  The library is available at NPM with name [`node-id-number-validator`](https://www.npmjs.com/package/node-id-number-validator).
+  [Download latest build.](https://raw.githubusercontent.com/imdreamrunner/js-id-number-validator/master/dist/bin/IDValidators.js)
   
-* require as amd module
+* using in node.js or webpack
 
-  `const IDValidators = require('../dist/amd/IDValidators');`
+  The library is available at NPM with name [`id-number-validator`](https://www.npmjs.com/package/id-number-validator).
   
-
+  You can import it via require.
+  
+  ```javascript
+  const IDValidators = require('id-number-validator');
+  ```
+  
+  Or in ES6 style.
+  
+  
+  ```javascript
+  import IDValidators from 'id-number-validator';
+  ```
+  
 Step 2, get a validator.
 
 ```javascript
@@ -41,7 +56,7 @@ And the result is in format:
 
 ```
 {
-    'result': true or false,
+    'success': true or false,
     'reason': string if the result is false
 }
 ```
@@ -52,6 +67,7 @@ And the result is in format:
 |:-------:|:--------:|
 | SG (Singapore) | NRIC |
 | TW (Taiwan) | ID (身份證字號) |
+| CN (China) | ID (居民身份证号码) |
 
 
 ## Development
@@ -59,6 +75,19 @@ And the result is in format:
 To build: `npm run build`
 
 To test: `npm test`
+
+### Add a new validator
+
+Step 1: Write the validator in TypeScript in the directory `src/providers/<name>.ts`. 
+The validator shall be a function returning a `InternalValidateResult`.
+
+Step 2: Register the validator in `src/IDValidators.ts`
+
+Step 3: Write test cases at `test/<name.ts>`.
+
+Step 4: Send a pull request to this repository.
+
+Thank you for the contributions.
 
 ## Bonus
 
