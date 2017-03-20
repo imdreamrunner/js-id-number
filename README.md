@@ -1,12 +1,10 @@
-JavaScript ID Number Validator
-==============================
+`id-number`: JavaScript ID Number Toolkit
+=========================================
 
 ## Introduction
 
 This is a collection of validators of identity document number
 for JavaScript applications.
-
-[Demo](http://id-number.dreamrunner.space/)
 
 ## Usage
 
