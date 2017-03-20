@@ -1,6 +1,6 @@
 {
-  "name": "id-number-validator",
-  "version": "0.0.8",
+  "name": "id-number",
+  "version": "0.0.1",
   "description": "JavaScript ID Number Validator",
   "main": "./dist/commonjs/index.js",
   "types": "./dist/commonjs/index.d.ts",
@@ -12,7 +12,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/imdreamrunner/js-id-number-validator.git"
+    "url": "https://github.com/imdreamrunner/js-id-number"
   },
   "devDependencies": {
     "assert": "^1.4.1",

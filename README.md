@@ -6,7 +6,7 @@ JavaScript ID Number Validator
 This is a collection of validators of identity document number
 for JavaScript applications.
 
-[Demo](http://id-number-validator.dreamrunner.space/)
+[Demo](http://id-number.dreamrunner.space/)
 
 ## Usage
 
@@ -21,23 +21,23 @@ You can install IDValidators by
   <!-- Please edit the URL above. -->
   ```
   
-  [Download latest build.](https://raw.githubusercontent.com/imdreamrunner/js-id-number-validator/master/dist/bin/IDValidators.js)
+  [Download latest build.](https://raw.githubusercontent.com/imdreamrunner/js-id-number/master/dist/bin/IDValidators.js)
   
 * using in node.js or webpack
 
-  The library is available at NPM with name [`id-number-validator`](https://www.npmjs.com/package/id-number-validator).
+  The library is available at NPM with name [`id-number`](https://www.npmjs.com/package/id-number).
   
   You can import it via require.
   
   ```javascript
-  const IDValidators = require('id-number-validator');
+  const IDValidators = require('id-number');
   ```
   
   Or in ES6 style.
   
   
   ```javascript
-  import IDValidators from 'id-number-validator';
+  import IDValidators from 'id-number';
   ```
   
 Step 2, get a validator.
@@ -91,7 +91,7 @@ Thank you for the contributions.
 
 ## Bonus
 
-We have a very good [wiki](https://github.com/imdreamrunner/js-id-number-validator/wiki)
+We have a very good [wiki](https://github.com/imdreamrunner/js-id-number/wiki)
 that explain the algorithm of the ID number checksum used by different 
 identity documents.
 
