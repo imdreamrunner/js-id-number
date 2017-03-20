@@ -4,7 +4,7 @@ var merge2 = require("merge2");
 var amdclean = require("gulp-amdclean");
 var webserver = require("gulp-webserver");
 
-gulp.task("build", function () {
+gulp.task("build-commonjs", function () {
     // Build CommonJS library.
     var tsProject = ts.createProject("tsconfig.json", {
         module: "commonjs"
@@ -20,7 +20,7 @@ gulp.task("build-amd", function () {
     // Build CommonJS library.
     var tsProject = ts.createProject("tsconfig.json", {
         module: "amd",
-        outFile: "IDValidators.js"
+        outFile: "IDNumber.js"
     });
     var tsResult = tsProject.src().pipe(tsProject());
     return merge2([
@@ -32,14 +32,14 @@ gulp.task("build-amd", function () {
 gulp.task("build-plain", ["build-amd"], function () {
     // Build library for browser.
     return gulp
-        .src(["dist/amd/IDValidators.js"])
+        .src(["dist/amd/IDNumber.js"])
         .pipe(amdclean.gulp({
             prefixMode: "standard",
             wrap: {
                 // This string is prepended to the file
                 start: ";(function(global) {\n",
                 // This string is appended to the file
-                end: "\nglobal.IDValidators=index.default;}(window));"
+                end: "\nglobal.IDNumber=index.default;}(window));"
             }
         }))
         .pipe(gulp.dest("dist/bin"));
@@ -54,4 +54,5 @@ gulp.task("webserver", function() {
         }));
 });
 
-gulp.task("default", ["build", "build-plain"]);
+gulp.task("build", ["build-commonjs", "build-plain"]);
+gulp.task("default", ["build"]);

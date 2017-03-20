@@ -1,5 +1,3 @@
-///<reference path='../types.ts'/>
-
 import {InternalValidator, InternalValidateResult, ErrorCode} from "../types";
 
 export default class TaiwanIDValidator implements InternalValidator {

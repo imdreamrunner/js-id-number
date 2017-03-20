@@ -1,2 +1,2 @@
-import { IDValidators } from "./IDValidators";
-export default IDValidators;
+import { IDNumber } from "./IDNumber";
+export default IDNumber;

@@ -1,5 +1,5 @@
 ;(function(global) {
-var types = {}, providers_SG_NRIC = {}, providers_TW_ID = {}, providers_CN_ID = {}, IDValidators = {}, index = {}, providers_sample = {};
+var types = {}, providers_SG_NRIC = {}, providers_TW_ID = {}, providers_CN_ID = {}, IDNumber = {}, index = {}, providers_sample = {};
 types = function (exports) {
   (function (ErrorCode) {
     ErrorCode[ErrorCode['error_input_variable'] = 0] = 'error_input_variable';
@@ -284,16 +284,16 @@ providers_CN_ID = function (exports, types_3) {
   exports.default = ChinaIDValidator;
   return exports;
 }(providers_CN_ID, types);
-IDValidators = function (exports, types_4, SG_NRIC_1, TW_ID_1, CN_ID_1) {
+IDNumber = function (exports, types_4, SG_NRIC_1, TW_ID_1, CN_ID_1) {
   var providerRegistry = {
     'SG': { 'NRIC': SG_NRIC_1.default },
     'TW': { 'ID': TW_ID_1.default },
     'CN': { 'ID': CN_ID_1.default }
   };
-  var IDValidators = function () {
-    function IDValidators() {
+  var IDNumber = function () {
+    function IDNumber() {
     }
-    IDValidators.getValidator = function (country, document) {
+    IDNumber.getValidator = function (country, document) {
       if (providerRegistry.hasOwnProperty(country)) {
         var countryValidators = providerRegistry[country];
         if (countryValidators.hasOwnProperty(document)) {
@@ -310,20 +310,20 @@ IDValidators = function (exports, types_4, SG_NRIC_1, TW_ID_1, CN_ID_1) {
         }
       }
     };
-    return IDValidators;
+    return IDNumber;
   }();
-  exports.IDValidators = IDValidators;
+  exports.IDNumber = IDNumber;
   return exports;
-}(IDValidators, types, providers_SG_NRIC, providers_TW_ID, providers_CN_ID);
-index = function (exports, IDValidators_1) {
+}(IDNumber, types, providers_SG_NRIC, providers_TW_ID, providers_CN_ID);
+index = function (exports, IDNumber_1) {
   Object.defineProperty(exports, '__esModule', { value: true });
-  exports.default = IDValidators_1.IDValidators;
+  exports.default = IDNumber_1.IDNumber;
   // To support both require and ES6 import default.
-  for (var attr in IDValidators_1.IDValidators) {
-    exports[attr] = IDValidators_1.IDValidators[attr];
+  for (var attr in IDNumber_1.IDNumber) {
+    exports[attr] = IDNumber_1.IDNumber[attr];
   }
   return exports;
-}(index, IDValidators);
+}(index, IDNumber);
 providers_sample = function (exports, types_5) {
   var SampleValidator = function () {
     function SampleValidator() {
@@ -340,4 +340,4 @@ providers_sample = function (exports, types_5) {
   exports.default = SampleValidator;
   return exports;
 }(providers_sample, types);
-global.IDValidators=index.default;}(window));
+global.IDNumber=index.default;}(window));

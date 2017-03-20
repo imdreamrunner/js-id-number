@@ -1,8 +1,8 @@
 "use strict";
-var IDValidators_1 = require("./IDValidators");
+var IDNumber_1 = require("./IDNumber");
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = IDValidators_1.IDValidators;
+exports.default = IDNumber_1.IDNumber;
 // To support both require and ES6 import default.
-for (var attr in IDValidators_1.IDValidators) {
-    exports[attr] = IDValidators_1.IDValidators[attr];
+for (var attr in IDNumber_1.IDNumber) {
+    exports[attr] = IDNumber_1.IDNumber[attr];
 }

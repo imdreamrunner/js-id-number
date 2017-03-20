@@ -1,6 +1,3 @@
-///<reference path='types'/>
-///<reference path='providers/SG_NRIC'/>
-///<reference path='providers/TW_ID'/>
 "use strict";
 var types_1 = require("./types");
 var SG_NRIC_1 = require("./providers/SG_NRIC");
@@ -17,10 +14,10 @@ var providerRegistry = {
         'ID': CN_ID_1.default
     }
 };
-var IDValidators = (function () {
-    function IDValidators() {
+var IDNumber = (function () {
+    function IDNumber() {
     }
-    IDValidators.getValidator = function (country, document) {
+    IDNumber.getValidator = function (country, document) {
         if (providerRegistry.hasOwnProperty(country)) {
             var countryValidators = providerRegistry[country];
             if (countryValidators.hasOwnProperty(document)) {
@@ -37,6 +34,6 @@ var IDValidators = (function () {
             }
         }
     };
-    return IDValidators;
+    return IDNumber;
 }());
-exports.IDValidators = IDValidators;
+exports.IDNumber = IDNumber;

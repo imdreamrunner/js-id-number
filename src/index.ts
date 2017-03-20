@@ -1,8 +1,8 @@
-import { IDValidators } from "./IDValidators";
+import { IDNumber } from "./IDNumber";
 
-export default IDValidators;
+export default IDNumber;
 
 // To support both require and ES6 import default.
-for (let attr in IDValidators) {
-    exports[attr] = (<any>IDValidators)[attr];
+for (let attr in IDNumber) {
+    exports[attr] = (<any>IDNumber)[attr];
 }

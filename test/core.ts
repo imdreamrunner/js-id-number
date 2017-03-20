@@ -1,9 +1,7 @@
-///<reference path='../dist/amd/IDValidators'/>
-
 import * as assert from 'assert';
 import IDValidators from '../dist/commonjs';
 
-describe('IDValidators', () => {
+describe('IDNumber', () => {
     beforeEach(function () {
     });
 

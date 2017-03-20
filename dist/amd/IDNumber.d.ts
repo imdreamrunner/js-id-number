@@ -45,15 +45,15 @@ declare module "providers/CN_ID" {
         validate(idNumber: string): InternalValidateResult;
     }
 }
-declare module "IDValidators" {
+declare module "IDNumber" {
     import { Validator } from "types";
-    export class IDValidators {
+    export class IDNumber {
         static getValidator(country: string, document: string): Validator;
     }
 }
 declare module "index" {
-    import { IDValidators } from "IDValidators";
-    export default IDValidators;
+    import { IDNumber } from "IDNumber";
+    export default IDNumber;
 }
 declare module "providers/sample" {
     import { InternalValidator, InternalValidateResult } from "types";

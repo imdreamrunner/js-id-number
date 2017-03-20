@@ -1,7 +1,3 @@
-///<reference path='types'/>
-///<reference path='providers/SG_NRIC'/>
-///<reference path='providers/TW_ID'/>
-
 import {Validator, InternalValidateResult, ErrorCode, ValidateResult} from "./types";
 
 import SingaporeNRICValidator from "./providers/SG_NRIC";
@@ -20,7 +16,7 @@ const providerRegistry : any = {
     }
 };
 
-export class IDValidators {
+export class IDNumber {
 
     static getValidator(country: string, document: string) : Validator {
         if (providerRegistry.hasOwnProperty(country)) {

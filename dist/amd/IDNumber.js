@@ -8,7 +8,6 @@ define("types", ["require", "exports"], function (require, exports) {
     })(exports.ErrorCode || (exports.ErrorCode = {}));
     var ErrorCode = exports.ErrorCode;
 });
-///<reference path='../types.ts'/>
 define("providers/SG_NRIC", ["require", "exports", "types"], function (require, exports, types_1) {
     "use strict";
     var SingaporeNRICValidator = (function () {
@@ -66,7 +65,6 @@ define("providers/SG_NRIC", ["require", "exports", "types"], function (require, 
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = SingaporeNRICValidator;
 });
-///<reference path='../types.ts'/>
 define("providers/TW_ID", ["require", "exports", "types"], function (require, exports, types_2) {
     "use strict";
     var TaiwanIDValidator = (function () {
@@ -131,7 +129,6 @@ define("providers/TW_ID", ["require", "exports", "types"], function (require, ex
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = TaiwanIDValidator;
 });
-///<reference path='../types.ts'/>
 define("providers/CN_ID", ["require", "exports", "types"], function (require, exports, types_3) {
     "use strict";
     var ChinaIDValidator = (function () {
@@ -239,10 +236,7 @@ define("providers/CN_ID", ["require", "exports", "types"], function (require, ex
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = ChinaIDValidator;
 });
-///<reference path='types'/>
-///<reference path='providers/SG_NRIC'/>
-///<reference path='providers/TW_ID'/>
-define("IDValidators", ["require", "exports", "types", "providers/SG_NRIC", "providers/TW_ID", "providers/CN_ID"], function (require, exports, types_4, SG_NRIC_1, TW_ID_1, CN_ID_1) {
+define("IDNumber", ["require", "exports", "types", "providers/SG_NRIC", "providers/TW_ID", "providers/CN_ID"], function (require, exports, types_4, SG_NRIC_1, TW_ID_1, CN_ID_1) {
     "use strict";
     var providerRegistry = {
         'SG': {
@@ -255,10 +249,10 @@ define("IDValidators", ["require", "exports", "types", "providers/SG_NRIC", "pro
             'ID': CN_ID_1.default
         }
     };
-    var IDValidators = (function () {
-        function IDValidators() {
+    var IDNumber = (function () {
+        function IDNumber() {
         }
-        IDValidators.getValidator = function (country, document) {
+        IDNumber.getValidator = function (country, document) {
             if (providerRegistry.hasOwnProperty(country)) {
                 var countryValidators = providerRegistry[country];
                 if (countryValidators.hasOwnProperty(document)) {
@@ -275,20 +269,19 @@ define("IDValidators", ["require", "exports", "types", "providers/SG_NRIC", "pro
                 }
             }
         };
-        return IDValidators;
+        return IDNumber;
     }());
-    exports.IDValidators = IDValidators;
+    exports.IDNumber = IDNumber;
 });
-define("index", ["require", "exports", "IDValidators"], function (require, exports, IDValidators_1) {
+define("index", ["require", "exports", "IDNumber"], function (require, exports, IDNumber_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.default = IDValidators_1.IDValidators;
+    exports.default = IDNumber_1.IDNumber;
     // To support both require and ES6 import default.
-    for (var attr in IDValidators_1.IDValidators) {
-        exports[attr] = IDValidators_1.IDValidators[attr];
+    for (var attr in IDNumber_1.IDNumber) {
+        exports[attr] = IDNumber_1.IDNumber[attr];
     }
 });
-///<reference path='../types.ts'/>
 define("providers/sample", ["require", "exports", "types"], function (require, exports, types_5) {
     "use strict";
     var SampleValidator = (function () {

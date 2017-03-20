@@ -12,16 +12,16 @@ for JavaScript applications.
 
 Step 1, install.
 
-You can install IDValidators by
+You can install IDNumber by
 
 * directly import in browser
 
   ```html
-  <script src="dist/bin/IDValidators.js"></script>
+  <script src="IDNumber.js"></script>
   <!-- Please edit the URL above. -->
   ```
   
-  [Download latest build.](https://raw.githubusercontent.com/imdreamrunner/js-id-number/master/dist/bin/IDValidators.js)
+  [Download latest build.](https://raw.githubusercontent.com/imdreamrunner/js-id-number/master/dist/bin/IDNumber.js)
   
 * using in node.js or webpack
 
@@ -30,20 +30,20 @@ You can install IDValidators by
   You can import it via require.
   
   ```javascript
-  const IDValidators = require('id-number');
+  const IDNumber = require('id-number');
   ```
   
   Or in ES6 style.
   
   
   ```javascript
-  import IDValidators from 'id-number';
+  import IDNumber from 'id-number';
   ```
   
 Step 2, get a validator.
 
 ```javascript
-const validator = IDValidators.getValidator('SG', 'NRIC');
+const validator = IDNumber.getValidator('SG', 'NRIC');
 ```
 
 Step 3, validate an input.
@@ -81,7 +81,7 @@ To test: `npm test`
 Step 1: Write the validator in TypeScript in the directory `src/providers/<name>.ts`. 
 The validator shall be a function returning a `InternalValidateResult`.
 
-Step 2: Register the validator in `src/IDValidators.ts`
+Step 2: Register the validator in `src/IDNumber.ts`
 
 Step 3: Write test cases at `test/<name.ts>`.
 

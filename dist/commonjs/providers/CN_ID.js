@@ -1,4 +1,3 @@
-///<reference path='../types.ts'/>
 "use strict";
 var types_1 = require("../types");
 var ChinaIDValidator = (function () {

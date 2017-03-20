@@ -31,7 +31,7 @@
     and <a href="https://github.com/imdreamrunner/js-id-number/graphs/contributors">GitHub contributors</a>.
 </p>
 
-<script src="dist/bin/IDValidators.js"></script>
+<script src="dist/bin/IDNumber.js"></script>
 
 <script>
     function displayOutput(output) {
@@ -47,7 +47,7 @@
     }
 
     function validate(country, type, input) {
-        var validator = IDValidators.getValidator(country, type);
+        var validator = IDNumber.getValidator(country, type);
         var output = validator(document.getElementById(input).value);
         displayOutput(output)
     }
