@@ -42,7 +42,7 @@ gulp.task("build-plain", ["build-amd"], function () {
                 end: "\nglobal.IDNumber=index.default;}(window));"
             }
         }))
-        .pipe(gulp.dest("dist/bin"));
+        .pipe(gulp.dest("dist/browser"));
 });
 
 gulp.task("webserver", function() {

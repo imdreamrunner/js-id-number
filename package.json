@@ -15,9 +15,9 @@
     "url": "https://github.com/imdreamrunner/js-id-number"
   },
   "devDependencies": {
-    "assert": "^1.4.1",
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.45",
+    "assert": "^1.4.1",
     "gulp": "^3.9.1",
     "gulp-amdclean": "^1.1.1",
     "gulp-typescript": "^3.0.1",
