@@ -212,10 +212,10 @@ class App extends Component {
                 </span>
               </p>
             </TabPanel>
-
-            <p>You can find a more detailed document <a href="https://github.com/imdreamrunner/js-id-number">here</a>.</p>
-
           </Tabs>
+
+          <p>You can find a more detailed document <a href="https://github.com/imdreamrunner/js-id-number">here</a>.</p>
+
         </div>
 
         <div className="copyright">
