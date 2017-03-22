@@ -154,7 +154,7 @@ class App extends Component {
           >
 
             <TabList>
-              <Tab>ES6 ppp</Tab>
+              <Tab>ES6 app</Tab>
               <Tab>Non-ES6 app with webpack</Tab>
               <Tab>Traditional web</Tab>
             </TabList>
