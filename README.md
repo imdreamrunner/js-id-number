@@ -19,7 +19,13 @@ You can install IDNumber by
   <!-- Please edit the URL above. -->
   ```
   
-  [Download latest build.](https://raw.githubusercontent.com/imdreamrunner/js-id-number/master/dist/bin/IDNumber.js)
+  [Download latest build.](https://github.com/imdreamrunner/js-id-number/releases)
+  
+  A CDN for this file is available at:
+  
+  ```
+  https://unpkg.com/id-number/dist/bin/IDValidators.js
+  ```
   
 * using in node.js or webpack
 
