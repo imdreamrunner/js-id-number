@@ -1,3 +1,65 @@
 .App {
   margin: 10px 40px;
+  .id-number-validation-area {
+    text-align: center;
+    h2 {
+      margin-top: 50px;
+    }
+    .id-number-input {
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid #DDD;
+      font-size: 20px;
+      width: 300px;
+      margin: 20px;
+    }
+  }
+
+  .tutorial-area {
+    background: #EEE;
+    padding: 10px 30px;
+    margin: 30px 0;
+
+    h3 {
+      font-size: 16px;
+    }
+
+    h4 {
+      font-size: 14px;
+    }
+
+    .code-area {
+      background: #DDD;
+      font-family: Consolas, monospace;
+    }
+
+    a {
+      color: #888;
+    }
+  }
+
+
+  .copyright {
+    margin: 30px 0 0 0;
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    a {
+      color: #888;
+    }
+  }
+}
+
+.DocumentSelector {
+  background: #EEE;
+  padding: 20px;
+  display: flex;
+
+  .Select {
+    flex-grow: 1;
+    margin-left: 10px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
 }
