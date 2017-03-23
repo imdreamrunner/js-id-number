@@ -8,6 +8,8 @@ document number for JavaScript applications.
 
 [DEMO](http://id-number.dreamrunner.space)
 
+[![Build Status](https://travis-ci.org/imdreamrunner/js-id-number.svg?branch=master)](https://travis-ci.org/imdreamrunner/js-id-number)
+
 ## Usage
 
 Step 1, install.
