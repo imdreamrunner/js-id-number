@@ -24,7 +24,15 @@ describe('China ID Number 居民身份证号码', () => {
         'S0980D',
         'S0980343534D',
         '4r32',
-        'i am fantastic',
+        'i am fantastic'
+    ].forEach((ic) => {
+        it(`should report ${ic} as error_length.`, () => {
+            assert.equal(validator(ic).success, false, ic + " " + JSON.stringify(validator(ic)));
+            assert.equal(validator(ic).reason, 'error_length', ic + " " + JSON.stringify(validator(ic)));
+        });
+    });
+
+    [
         '999999199304070016'
     ].forEach((ic) => {
         it(`should report ${ic} as error_format.`, () => {

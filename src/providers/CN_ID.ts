@@ -11,6 +11,14 @@ export default class ChinaIDValidator implements InternalValidator {
                 reason: ErrorCode.error_input_variable
             };
         }
+
+        if (idNumber.length != 18) {
+            return {
+                success: false,
+                reason: ErrorCode.error_length
+            };
+        }
+
         var province : any = {
             11: "北京",
             12: "天津",

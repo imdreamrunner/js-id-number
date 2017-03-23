@@ -49,6 +49,9 @@ class App extends Component {
 
   updateValidateResult() {
     setTimeout(() => {
+      if (!this.state.value) {
+        return;
+      }
       let validator = IDNumber.getValidator(this.state.countrySelected.value, this.state.idTypeSelected.value);
       let result = validator(this.state.value);
       this.setState({
