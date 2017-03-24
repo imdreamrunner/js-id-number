@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import ReactGA from 'react-ga';
 
 import IDNumber from '../../';
 
 import './App.css';
+
+ReactGA.initialize('UA-48557356-1');
+ReactGA.set({ page: window.location.pathname });
+ReactGA.pageview(window.location.pathname);
 
 class App extends Component {
   constructor(props) {
