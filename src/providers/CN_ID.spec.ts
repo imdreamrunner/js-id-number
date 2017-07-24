@@ -1,12 +1,9 @@
-import * as assert from 'assert';
-import IDValidators from '../../dist/commonjs';
+import * as assert from "assert";
+import ChineseIdTool from "./CN_ID";
+import { ErrorCode } from "../types";
 
 describe('China ID Number 居民身份证号码', () => {
-    const validator = IDValidators.getValidator('CN', 'ID');
-
-    it('should return a validator.', () => {
-        assert.equal(typeof validator, 'function');
-    });
+    const chineseIdTool = new ChineseIdTool();
 
     [
         '140311199901015072',
@@ -15,8 +12,9 @@ describe('China ID Number 居民身份证号码', () => {
         '110101198801017149'
     ].forEach((ic) => {
         it(`should report ${ic} as correct.`, () => {
-            assert.equal(validator(ic).success, true, ic + " " + JSON.stringify(validator(ic)));
-            assert.equal(validator(ic).reason, null, ic);
+            const result = chineseIdTool.validate(ic);
+            assert.equal(result.success, true, ic + " " + JSON.stringify(result));
+            assert.equal(result.reason, null, ic);
         });
     });
 
@@ -27,8 +25,9 @@ describe('China ID Number 居民身份证号码', () => {
         'i am fantastic'
     ].forEach((ic) => {
         it(`should report ${ic} as error_length.`, () => {
-            assert.equal(validator(ic).success, false, ic + " " + JSON.stringify(validator(ic)));
-            assert.equal(validator(ic).reason, 'error_length', ic + " " + JSON.stringify(validator(ic)));
+            const result = chineseIdTool.validate(ic);
+            assert.equal(result.success, false, ic + " " + JSON.stringify(result));
+            assert.equal(result.reason, ErrorCode.error_length, ic + " " + JSON.stringify(result));
         });
     });
 
@@ -36,8 +35,9 @@ describe('China ID Number 居民身份证号码', () => {
         '999999199304070016'
     ].forEach((ic) => {
         it(`should report ${ic} as error_format.`, () => {
-            assert.equal(validator(ic).success, false, ic + " " + JSON.stringify(validator(ic)));
-            assert.equal(validator(ic).reason, 'error_format', ic + " " + JSON.stringify(validator(ic)));
+            const result = chineseIdTool.validate(ic);
+            assert.equal(result.success, false, ic + " " + JSON.stringify(result));
+            assert.equal(result.reason, ErrorCode.error_format, ic + " " + JSON.stringify(result));
         });
     });
 
@@ -49,8 +49,9 @@ describe('China ID Number 居民身份证号码', () => {
     ].forEach((icOriginal) => {
         it(`should report ${JSON.stringify(icOriginal)} as error_input_variable.`, () => {
             const ic : string = <string><any>icOriginal;
-            assert.equal(validator(ic).success, false, ic + " " + JSON.stringify(validator(ic)));
-            assert.equal(validator(ic).reason, 'error_input_variable', ic + " " + JSON.stringify(validator(ic)));
+            const result = chineseIdTool.validate(ic);
+            assert.equal(result.success, false, ic + " " + JSON.stringify(result));
+            assert.equal(result.reason, ErrorCode.error_input_variable, ic + " " + JSON.stringify(result));
         });
     });
 
@@ -60,8 +61,20 @@ describe('China ID Number 居民身份证号码', () => {
         '140311199901015073'
     ].forEach((ic) => {
         it(`should report ${ic} as error_checksum.`, () => {
-            assert.equal(validator(ic).success, false);
-            assert.equal(validator(ic).reason, 'error_checksum');
+            const result = chineseIdTool.validate(ic);
+            assert.equal(result.success, false);
+            assert.equal(result.reason, ErrorCode.error_checksum);
         });
     });
+
+    for (let i = 0; i < 10; i++) {
+        it('should generate a random Chinese ID number', () => {
+            const generatedResult = chineseIdTool.generate();
+            console.log('Generated Chinese ID Number: ' + generatedResult.value + ' Extra: ' + JSON.stringify(generatedResult.extra));
+            assert.equal(typeof generatedResult.value, "string", JSON.stringify(generatedResult));
+            const validateResult = chineseIdTool.validate(generatedResult.value);
+            assert.equal(validateResult.success, true, JSON.stringify(generatedResult));
+        })
+    }
+
 });

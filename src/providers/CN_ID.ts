@@ -2,6 +2,7 @@ import {
     InternalValidator, InternalValidateResult, ErrorCode, InternalGenerator,
     InternalGenerateResult
 } from "../types";
+import * as utils from "../utils";
 
 /*
  * Chinese ID Number Validation & Generation
@@ -55,7 +56,7 @@ const CHARACTER_MAPPING : any = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3
 
 export default class ChineseIdTool implements InternalValidator, InternalGenerator {
 
-    validate(idNumber:string):InternalValidateResult {
+    validate(idNumber:string) : InternalValidateResult {
 
         if (typeof idNumber !== 'string') {
             return {
@@ -72,13 +73,12 @@ export default class ChineseIdTool implements InternalValidator, InternalGenerat
         }
 
         const birthdayString =
-            idNumber.substr(6, 4) + '/' + Number(idNumber.substr(10, 2)) + '/' + Number(idNumber.substr(12, 2));
+            idNumber.substr(6, 4) + '-' + Number(idNumber.substr(10, 2)) + '-' + Number(idNumber.substr(12, 2));
         const birthdayDate = new Date(birthdayString);
         const reformattedBirthdayString =
-            birthdayDate.getFullYear() + '/' + Number(birthdayDate.getMonth() + 1) + '/' + Number(birthdayDate.getDate());
+            birthdayDate.getFullYear() + '-' + Number(birthdayDate.getMonth() + 1) + '-' + Number(birthdayDate.getDate());
         const currentTime = new Date().getTime();
         const birthdayTime = birthdayDate.getTime();
-        let checkSum : number = 0;
 
         if (!/^\d{17}(\d|x)$/i.test(idNumber)) {
             return {
@@ -87,7 +87,10 @@ export default class ChineseIdTool implements InternalValidator, InternalGenerat
             }
         }
 
-        if (CODE_TO_PROVINCE[idNumber.substr(0, 2)] === undefined) {
+        const provinceCode = idNumber.substr(0, 2);
+        const provinceName = CODE_TO_PROVINCE[provinceCode];
+
+        if (provinceName === undefined) {
             return {
                 success: false,
                 reason: ErrorCode.error_format,
@@ -96,6 +99,7 @@ export default class ChineseIdTool implements InternalValidator, InternalGenerat
                 }
             }
         }
+
 
         if (birthdayTime >= currentTime || birthdayString !== reformattedBirthdayString) {
             return {
@@ -107,11 +111,7 @@ export default class ChineseIdTool implements InternalValidator, InternalGenerat
             }
         }
 
-        for (let i = 0; i < 17; i++) {
-            checkSum += parseInt(idNumber.substr(i, 1)) * CHECKSUM_WEIGHT[i];
-        }
-
-        const residue = CHARACTER_MAPPING[checkSum % 11];
+        const residue = this.getCheckSumResidue(idNumber);
 
         if (residue !== idNumber.substr(17, 1)) {
             return {
@@ -123,7 +123,7 @@ export default class ChineseIdTool implements InternalValidator, InternalGenerat
         return {
             success: true,
             extra: {
-                province: CODE_TO_PROVINCE[idNumber.substr(0, 2)],
+                province: provinceName,
                 birthday: birthdayString,
                 gender: parseInt(idNumber.substr(16, 1)) % 2 ? "Male" : "Female"
             }
@@ -131,7 +131,40 @@ export default class ChineseIdTool implements InternalValidator, InternalGenerat
     }
 
     generate(): InternalGenerateResult {
-        return undefined;
+        const provinceCodeList = Object.keys(CODE_TO_PROVINCE);
+        const randomProvinceCode = utils.randomPick(provinceCodeList).toString();
+        const randomAreaCode = utils.randomDigitString(4);
+        const randomBirthdayDate = new Date(+(new Date()) - Math.floor(Math.random() * 1000000000000));
+        const birthdayString =
+            randomBirthdayDate.getFullYear().toString() +
+            utils.getNumberFixedLength(randomBirthdayDate.getMonth() + 1, 2) +
+            utils.getNumberFixedLength(randomBirthdayDate.getDate(), 2);
+        const formattedBirthdayString =
+            randomBirthdayDate.getFullYear().toString() + '-' +
+            utils.getNumberFixedLength(randomBirthdayDate.getMonth() + 1, 2) + '-' +
+            utils.getNumberFixedLength(randomBirthdayDate.getDate(), 2);
+        const randomIndex = utils.randomDigitString(3);
+        const idNumberWithoutCheckSum = randomProvinceCode + randomAreaCode + birthdayString + randomIndex;
+        const residue = this.getCheckSumResidue(idNumberWithoutCheckSum);
+        const idNumber = idNumberWithoutCheckSum + residue;
+        return {
+            value: idNumber,
+            extra: {
+                province: CODE_TO_PROVINCE[randomProvinceCode],
+                birthday: formattedBirthdayString,
+                gender: parseInt(idNumber.substr(16, 1)) % 2 ? "Male" : "Female"
+            }
+        };
+    }
+
+    getCheckSumResidue(idNumber: string) : string {
+        let checkSum : number = 0;
+
+        for (let i = 0; i < 17; i++) {
+            checkSum += parseInt(idNumber.substr(i, 1)) * CHECKSUM_WEIGHT[i];
+        }
+
+        return CHARACTER_MAPPING[checkSum % 11];
     }
 
 }
