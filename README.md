@@ -91,7 +91,7 @@ The validator shall be a function returning a `InternalValidateResult`.
 
 Step 2: Register the validator in `src/IDNumber.ts`
 
-Step 3: Write test cases at `test/<name.ts>`.
+Step 3: Write test cases at `src/<name>.spec.ts`.
 
 Step 4: Send a pull request to this repository.
 
