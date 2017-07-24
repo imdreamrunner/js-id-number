@@ -49,7 +49,7 @@ export default class ValidationBox extends React.Component {
       this.setState({
         inputClassName: result.success ? 'success' : 'error',
         result: result.success ? 'Valid' : 'Invalid',
-        extra: result.extra || {'Reason': result.reason}
+        extra: result.extra || (result.reason ? {'Reason': result.reason} : null)
       });
     }, 0);
   }
