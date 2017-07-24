@@ -2,6 +2,10 @@ export interface InternalValidator {
     validate(id: string) : InternalValidateResult;
 }
 
+export interface InternalGenerator {
+    generate(): InternalGenerateResult;
+}
+
 export interface Validator {
     (id: string) : ValidateResult;
 }
@@ -14,6 +18,11 @@ export interface ExtraData {
 export interface InternalValidateResult {
     success: boolean;
     reason?: ErrorCode;
+    extra?: ExtraData;
+}
+
+export interface InternalGenerateResult {
+    value: string,
     extra?: ExtraData;
 }
 

@@ -2,7 +2,7 @@ import {Validator, InternalValidateResult, ErrorCode, ValidateResult} from "./ty
 
 import SingaporeNRICValidator from "./providers/SG_NRIC";
 import TaiwanIDValidator from "./providers/TW_ID";
-import ChinaIDValidator from "./providers/CN_ID";
+import ChineseIdTool from "./providers/CN_ID";
 
 const providerRegistry : any = {
     'SG': {
@@ -12,7 +12,7 @@ const providerRegistry : any = {
         'ID': TaiwanIDValidator
     },
     'CN': {
-        'ID': ChinaIDValidator
+        'ID': ChineseIdTool
     }
 };
 
