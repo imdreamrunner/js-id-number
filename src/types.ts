@@ -3,11 +3,15 @@ export interface InternalValidator {
 }
 
 export interface InternalGenerator {
-    generate(): InternalGenerateResult;
+    generate(): GenerateResult;
 }
 
 export interface Validator {
     (id: string) : ValidateResult;
+}
+
+export interface Generator {
+    () : GenerateResult;
 }
 
 export interface ExtraData {
@@ -21,7 +25,7 @@ export interface InternalValidateResult {
     extra?: ExtraData;
 }
 
-export interface InternalGenerateResult {
+export interface GenerateResult {
     value: string,
     extra?: ExtraData;
 }

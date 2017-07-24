@@ -1,6 +1,6 @@
 import {
     InternalValidator, InternalValidateResult, ErrorCode, InternalGenerator,
-    InternalGenerateResult
+    GenerateResult
 } from "../types";
 import * as utils from "../utils";
 
@@ -130,7 +130,7 @@ export default class ChineseIdTool implements InternalValidator, InternalGenerat
         }
     }
 
-    generate(): InternalGenerateResult {
+    generate(): GenerateResult {
         const provinceCodeList = Object.keys(CODE_TO_PROVINCE);
         const randomProvinceCode = utils.randomPick(provinceCodeList).toString();
         const randomAreaCode = utils.randomDigitString(4);

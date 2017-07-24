@@ -1,4 +1,4 @@
-import {Validator, InternalValidateResult, ErrorCode, ValidateResult} from "./types";
+import {Validator, InternalValidateResult, ErrorCode, ValidateResult, Generator} from "./types";
 
 import SingaporeNRICValidator from "./providers/SG_NRIC";
 import TaiwanIDValidator from "./providers/TW_ID";
@@ -22,9 +22,15 @@ export class IDNumber {
         if (providerRegistry.hasOwnProperty(country)) {
             const countryValidators = providerRegistry[country];
             if (countryValidators.hasOwnProperty(document)) {
-                const validator = new countryValidators[document]();
+                const tool = new countryValidators[document]();
                 return <Validator> function (id) {
-                    const result:InternalValidateResult = validator.validate(id);
+                    if (!tool.validate) {
+                        return {
+                            success: false,
+                            reason: "not_implemented"
+                        }
+                    }
+                    const result:InternalValidateResult = tool.validate(id);
                     const output:ValidateResult = { success: result.success};
                     if (result.hasOwnProperty("reason")) output.reason = <string>ErrorCode[<number>result.reason];
                     if (result.hasOwnProperty("extra")) output.extra = result.extra;
@@ -33,4 +39,20 @@ export class IDNumber {
             }
         }
     }
+
+    static getGenerator(country: string, document: string) : Generator {
+        if (providerRegistry.hasOwnProperty(country)) {
+            const countryValidators = providerRegistry[country];
+            if (countryValidators.hasOwnProperty(document)) {
+                const tool = new countryValidators[document]();
+                return <Generator> function () {
+                    if (!tool.generate) {
+                        return undefined;
+                    }
+                    return tool.generate();
+                }
+            }
+        }
+    }
+
 }

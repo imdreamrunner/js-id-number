@@ -12,6 +12,55 @@
       font-size: 20px;
       width: 300px;
       margin: 20px;
+      font-family: monospace;
+    }
+    .success {
+      background: rgba(0, 255, 0, 0.2);
+    }
+    .error {
+      background: rgba(255, 0, 0, 0.1);
+    }
+    .validation-result {
+      table {
+        width: 300px;
+        margin: 10px auto;
+        border-collapse: collapse;
+        td {
+          border: 1px solid #ddd;
+          margin: 0;
+          padding: 5px;
+        }
+        tr:nth-child(odd) {
+          background: #eee;
+        }
+      }
+    }
+  }
+
+
+  .id-number-generation-area {
+    text-align: center;
+    h2 {
+      margin-top: 50px;
+    }
+    ul.id-number-list {
+      margin: 0 auto;
+      padding: 0;
+      list-style-type: none;
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      li {
+        border-bottom: 1px solid #ddd;
+        padding: 5px;
+        cursor: pointer;
+        &:last-child {
+          border-bottom: none;
+        }
+        &:hover {
+          background: #eee;
+        }
+      }
     }
   }
 

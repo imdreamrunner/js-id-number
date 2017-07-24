@@ -4,9 +4,10 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ReactGA from 'react-ga';
 import GitHubForkRibbon from 'react-github-fork-ribbon';
 
-import IDNumber from '../../';
-
 import './App.css';
+
+import ValidationBox from './ValidationBox';
+import GenerationBox from './GenerationBox';
 
 ReactGA.initialize('UA-48557356-1');
 ReactGA.set({ page: window.location.pathname });
@@ -23,47 +24,8 @@ class App extends React.Component {
       idTypeSelected: null
     };
 
-    this.handleIdNumberChange = this.handleIdNumberChange.bind(this);
     this.handleCountryChange = this.handleCountryChange.bind(this);
     this.handleIdTypeChange = this.handleIdTypeChange.bind(this);
-  }
-
-  handleIdNumberChange(event) {
-    let newValue = event.target.value;
-
-    if (!newValue) {
-      this.setState({
-        value: newValue,
-        result: 'Waiting for input...'
-      });
-      return;
-    }
-
-    if (!this.state.countrySelected) {
-      this.setState({
-        value: newValue,
-        result: "Please select the document type."
-      });
-      return;
-    }
-
-    this.setState({
-      value: newValue
-    });
-    this.updateValidateResult();
-  }
-
-  updateValidateResult() {
-    setTimeout(() => {
-      if (!this.state.value) {
-        return;
-      }
-      let validator = IDNumber.getValidator(this.state.countrySelected.value, this.state.idTypeSelected.value);
-      let result = validator(this.state.value);
-      this.setState({
-        result: JSON.stringify(result)
-      });
-    }, 0);
   }
 
   handleCountryChange(country) {
@@ -73,14 +35,21 @@ class App extends React.Component {
       idTypeSelected: country.ids[0]
     });
     this.idTypeSelect.focus();
-    this.updateValidateResult();
+    this.updateChildrenBox();
   }
 
   handleIdTypeChange(idType) {
     this.setState({
       idTypeSelected: idType
     });
-    this.updateValidateResult();
+    this.updateChildrenBox();
+  }
+
+  updateChildrenBox() {
+    setTimeout(() => {
+      this.validateBox.setCountryAndIdType(this.state.countrySelected, this.state.idTypeSelected);
+      this.generationBox.setCountryAndIdType(this.state.countrySelected, this.state.idTypeSelected);
+    }, 0);
   }
 
   countryOptions = [
@@ -115,13 +84,6 @@ class App extends React.Component {
       ]
     }
   ];
-
-  displayDocumentType() {
-    if (this.state.countrySelected) {
-      return this.state.countrySelected.label + ' ' + this.state.idTypeSelected.label;
-    }
-    return 'ID Number';
-  }
 
   displayGitHubRibbon() {
     return (
@@ -162,15 +124,13 @@ class App extends React.Component {
           />
         </div>
 
-        <div className="id-number-validation-area">
-          <h2>{this.displayDocumentType()} Validation</h2>
-          <input
-            className="id-number-input"
-            onChange={this.handleIdNumberChange}
-            placeholder={"Please enter " + this.displayDocumentType()}
-          />
-          <div>Result: {this.state.result}</div>
-        </div>
+        <ValidationBox
+          ref={(me) => this.validateBox = me}
+        />
+
+        <GenerationBox
+          ref={(me) => this.generationBox = me}
+        />
 
         <div className="tutorial-area">
           <h3>Use it in your project</h3>
