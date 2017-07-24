@@ -12,7 +12,7 @@ document number for JavaScript applications.
 
 ## Usage
 
-Step 1, install.
+### Installation
 
 You can install IDNumber by
 
@@ -48,15 +48,10 @@ You can install IDNumber by
   import IDNumber from 'id-number';
   ```
   
-Step 2, get a validator.
+### ID Number Validation
 
 ```javascript
 const validator = IDNumber.getValidator('SG', 'NRIC');
-```
-
-Step 3, validate an input.
-
-```javascript
 const result = validator('S0980292D');
 ```
 
@@ -66,6 +61,22 @@ And the result is in format:
 {
     'success': true or false,
     'reason': string if the result is false
+}
+```
+  
+### ID Number Generation
+
+```javascript
+const generator = IDNumber.getValidator('CN', 'ID');
+const result = generator();
+```
+
+And the result is in format:
+
+```
+{
+    'value': 466311201110053638,
+    'extra': {"province":"海南","birthday":"2011-10-05","gender":"Male"}
 }
 ```
 
@@ -84,12 +95,12 @@ To build: `npm run build`
 
 To test: `npm test`
 
-### Add a new validator
+### Add support for new identity documentations
 
-Step 1: Write the validator in TypeScript in the directory `src/providers/<name>.ts`. 
+Step 1: Write the validator / generator in TypeScript in the directory `src/providers/<name>.ts`. 
 The validator shall be a function returning a `InternalValidateResult`.
 
-Step 2: Register the validator in `src/IDNumber.ts`
+Step 2: Register the validator / generator in `src/IDNumber.ts`
 
 Step 3: Write test cases at `src/<name>.spec.ts`.
 
