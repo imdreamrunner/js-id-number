@@ -133,6 +133,11 @@ class App extends React.Component {
     )
   }
 
+  releaseCdnLink() {
+    return 'https://unpkg.com/id-number/dist/browser/IDNumber.js';
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -218,7 +223,7 @@ class App extends React.Component {
             </TabPanel>
             <TabPanel>
               <h4>Step 1: Install <span className="code-area">id-number</span></h4>
-              <p>Add script tag <span className="code-area">&lt;script src=&quot;IDNumber.js&quot;&gt;&lt;/script&gt;</span> into your HTML file.</p>
+              <p>Add script tag <span className="code-area">&lt;script src=&quot;{this.releaseCdnLink()}&quot;&gt;&lt;/script&gt;</span> into your HTML file.</p>
               <h4>Step 2: Get a validator</h4>
               <p>
                 <span className="code-area">

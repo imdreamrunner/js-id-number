@@ -28,7 +28,7 @@ You can install IDNumber by
   A CDN for this file is available at:
   
   ```
-  https://unpkg.com/id-number/dist/bin/IDValidators.js
+  https://unpkg.com/id-number/dist/browser/IDNumber.js
   ```
   
 * using in node.js or webpack
