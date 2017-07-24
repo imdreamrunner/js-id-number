@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ReactGA from 'react-ga';
@@ -12,7 +12,7 @@ ReactGA.initialize('UA-48557356-1');
 ReactGA.set({ page: window.location.pathname });
 ReactGA.pageview(window.location.pathname);
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
