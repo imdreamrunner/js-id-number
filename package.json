@@ -6,7 +6,7 @@
   "types": "./dist/commonjs/index.d.ts",
   "scripts": {
     "build": "gulp",
-    "test": "gulp && tsc test/**.ts --module commonjs && mocha"
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "author": "",
   "license": "ISC",
@@ -17,14 +17,15 @@
   "devDependencies": {
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.45",
-    "assert": "^1.4.1",
+    "chai": "^4.1.0",
     "gulp": "^3.9.1",
     "gulp-amdclean": "^1.1.1",
     "gulp-typescript": "^3.0.1",
     "gulp-webserver": "^0.9.1",
     "merge2": "^1.0.2",
-    "mocha": "^3.1.0",
+    "mocha": "^3.4.2",
     "requirejs": "^2.3.2",
+    "ts-node": "^3.2.1",
     "typescript": "^2.0.3"
   }
 }

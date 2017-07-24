@@ -1,8 +1,8 @@
 import * as assert from 'assert';
-import IDValidators from '../dist/commonjs';
+import IDValidators from '../../dist/commonjs';
 
-describe('Taiwan (TW) ID 身份證字號', () => {
-    const validator = IDValidators.getValidator('TW', 'ID');
+describe('Singapore (SG) NRIC / FIN', () => {
+    const validator = IDValidators.getValidator('SG', 'NRIC');
 
     it('should return a validator.', () => {
         assert.equal(typeof validator, 'function');
@@ -10,12 +10,14 @@ describe('Taiwan (TW) ID 身份證字號', () => {
 
     it('should report those number as correct.', () => {
         const cases = [
-            'A116108714',
-            'F168272824',
-            'R174568625',
-            'U256587234',
-            'O223819290',
-            'L298812387'
+            'S0980292D',
+            'S4155220D',
+            'T0393475B',
+            'T9787176G',
+            'F9069967U',
+            'F4700348L',
+            'G4861307T',
+            'G9173695R'
         ];
         cases.forEach((ic) => {
             assert.equal(validator(ic).success, true);
@@ -25,6 +27,8 @@ describe('Taiwan (TW) ID 身份證字號', () => {
 
     it('should report those number as error_length.', () => {
         const cases = [
+            'S0980D',
+            'S0980343534D',
             '4r32',
             null,
             false,
@@ -38,13 +42,11 @@ describe('Taiwan (TW) ID 身份證字號', () => {
         })
     });
 
+
     it('should report those number as error_format.', () => {
         const cases = [
-            '0216108714',
-            'A21610871A',
-            'A21610871/',
-            'A21610871 ',
-            ' 216108713',
+            'A0980292D',
+            'G09802924',
         ];
         cases.forEach((ic) => {
             assert.equal(validator(ic).success, false);
@@ -54,12 +56,14 @@ describe('Taiwan (TW) ID 身份證字號', () => {
 
     it('should report those number as error_checksum.', () => {
         const cases = [
-            'A216108714',
-            'F165272824',
-            'R174568624',
-            'U256584234',
-            'O223619280',
-            'L298812383'
+            'S0980292B',
+            'S4155220B',
+            'T0393475G',
+            'T9787176B',
+            'F9069967L',
+            'F4700348U',
+            'G4861307R',
+            'G9173695T'
         ];
         cases.forEach((ic) => {
             assert.equal(validator(ic).success, false);

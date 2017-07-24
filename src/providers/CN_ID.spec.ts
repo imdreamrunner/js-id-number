@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import IDValidators from '../dist/commonjs';
+import IDValidators from '../../dist/commonjs';
 
 describe('China ID Number 居民身份证号码', () => {
     const validator = IDValidators.getValidator('CN', 'ID');
