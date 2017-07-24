@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ReactGA from 'react-ga';
+import GitHubForkRibbon from 'react-github-fork-ribbon';
 
 import IDNumber from '../../';
 
@@ -122,10 +123,22 @@ class App extends Component {
     return 'ID Number';
   }
 
+  displayGitHubRibbon() {
+    return (
+      <GitHubForkRibbon href="https://github.com/imdreamrunner/js-id-number"
+                        target="_blank"
+                        position="right">
+        Fork me on GitHub
+      </GitHubForkRibbon>
+    )
+  }
+
   render() {
     return (
       <div className="App">
         <h1>ID Number Toolkit</h1>
+
+        {this.displayGitHubRibbon()}
 
         <div className="DocumentSelector">
           <Select
