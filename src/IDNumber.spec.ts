@@ -17,4 +17,15 @@ describe('IDNumber', () => {
             assert.equal(typeof validator, 'function');
         });
     });
+
+
+    describe('#getValidator --> response', () => {
+        const validator = IDValidators.getValidator('SG', 'NRIC');
+        const successResult = validator('S0980292D');
+        assert.equal(successResult.success, true);
+        assert.equal(successResult.reason, null);
+        const errorResult = validator('S0980292X');
+        assert.equal(errorResult.success, false);
+        assert.equal(errorResult.reason, 'error_checksum');
+    })
 });
