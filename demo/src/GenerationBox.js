@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import CopyToClipboard from "react-copy-to-clipboard";
 import ReactTooltip from 'react-tooltip'
+import MdRefresh from 'react-icons/lib/md/refresh';
 
 import JsonTable from './JsonTable';
 
@@ -67,19 +68,24 @@ export default class GenerationBox extends React.Component {
               )
             } else {
               return (
-                <ul className="id-number-list">
-                  {
-                    this.state.resultList.map((idNumber) => {
-                      return (
-                        <CopyToClipboard key={idNumber.value}
-                                         text={idNumber.value}
-                                         onCopy={() => alert('Copied to clipboard!')}>
-                          <li data-tip={ReactDOMServer.renderToStaticMarkup(JsonTable(idNumber.extra))}>{idNumber.value}</li>
-                        </CopyToClipboard>
-                      )
-                    })
-                  }
-                </ul>
+                <div>
+                  <ul className="id-number-list">
+                    {
+                      this.state.resultList.map((idNumber) => {
+                        return (
+                          <CopyToClipboard key={idNumber.value}
+                                           text={idNumber.value}
+                                           onCopy={() => alert('Copied to clipboard!')}>
+                            <li data-tip={ReactDOMServer.renderToStaticMarkup(JsonTable(idNumber.extra))}>{idNumber.value}</li>
+                          </CopyToClipboard>
+                        )
+                      })
+                    }
+                  </ul>
+                  <div className="refresh-icon" onClick={this.generateNewIdNumbers}>
+                    <MdRefresh size={30} />
+                  </div>
+                </div>
               )
             }
           })()

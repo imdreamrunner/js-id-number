@@ -62,6 +62,13 @@
         }
       }
     }
+    .refresh-icon {
+      margin: 10px;
+      svg:hover {
+        opacity: 0.7;
+        background: #eee;
+      }
+    }
   }
 
   .tutorial-area {
