@@ -97,9 +97,16 @@ Step 4: Send a pull request to this repository.
 
 Thank you for the contributions.
 
+## Demo Website
+
+The source code for demo website (id-number.dreamrunner.space) locates
+at the `demo` folder.
+
+To deploy, go into `demo` folder and type `yarn deploy` if you have
+permission.
+
 ## Bonus
 
 We have a very good [wiki](https://github.com/imdreamrunner/js-id-number/wiki)
 that explain the algorithm of the ID number checksum used by different 
 identity documents.
-
