@@ -73,10 +73,10 @@ export default class ChineseIdTool implements InternalValidator, InternalGenerat
         }
 
         const birthdayString =
-            idNumber.substr(6, 4) + '-' + Number(idNumber.substr(10, 2)) + '-' + Number(idNumber.substr(12, 2));
+            idNumber.substr(6, 4) + '-' + idNumber.substr(10, 2) + '-' + idNumber.substr(12, 2);
         const birthdayDate = new Date(birthdayString);
         const reformattedBirthdayString =
-            birthdayDate.getFullYear() + '-' + Number(birthdayDate.getMonth() + 1) + '-' + Number(birthdayDate.getDate());
+            birthdayDate.getFullYear() + '-' + utils.getNumberFixedLength(birthdayDate.getMonth() + 1, 2) + '-' + utils.getNumberFixedLength(birthdayDate.getDate(), 2);
         const currentTime = new Date().getTime();
         const birthdayTime = birthdayDate.getTime();
 
