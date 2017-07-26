@@ -11,6 +11,10 @@ document number for JavaScript applications.
 [![Build Status](https://img.shields.io/travis/imdreamrunner/js-id-number/master.svg?style=flat-square)][travis-link]
 [![NPM Version](https://img.shields.io/npm/v/id-number.svg?style=flat-square)][npm-link]
 [![NPM Downloads](https://img.shields.io/npm/dt/id-number.svg?style=flat-square)][npm-link]
+![Internet Explorer](https://img.shields.io/badge/Internet_Explorer-6+-blue.svg?style=flat-square)
+![Google Chrome](https://img.shields.io/badge/Google_Chrome-Current-brightgreen.svg?style=flat-square)
+![Firefox](https://img.shields.io/badge/Firefox-Current-F78E25.svg?style=flat-square)
+![Safari](https://img.shields.io/badge/Safari-Current-0CB3EC.svg?style=flat-square)
 
 ## Usage
 
