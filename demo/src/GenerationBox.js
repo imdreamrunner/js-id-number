@@ -3,6 +3,8 @@ import ReactDOMServer from 'react-dom/server';
 import CopyToClipboard from "react-copy-to-clipboard";
 import ReactTooltip from 'react-tooltip'
 import MdRefresh from 'react-icons/lib/md/refresh';
+import MdContentCut from 'react-icons/lib/md/content-cut';
+import MdContentPaste from 'react-icons/lib/md/content-paste';
 
 import JsonTable from './JsonTable';
 
@@ -73,11 +75,18 @@ export default class GenerationBox extends React.Component {
                     {
                       this.state.resultList.map((idNumber) => {
                         return (
-                          <CopyToClipboard key={idNumber.value}
-                                           text={idNumber.value}
-                                           onCopy={() => alert('Copied to clipboard!')}>
-                            <li data-tip={ReactDOMServer.renderToStaticMarkup(JsonTable(idNumber.extra))}>{idNumber.value}</li>
-                          </CopyToClipboard>
+                          <li  key={idNumber.value}>
+                            <span data-tip={ReactDOMServer.renderToStaticMarkup(JsonTable(idNumber.extra))}>{idNumber.value}</span>
+
+                            <CopyToClipboard text={idNumber.value}
+                                             onCopy={() => alert('Copied to clipboard!')}>
+                              <MdContentCut data-tip="Copy ID Number" size={16} />
+                            </CopyToClipboard>
+                            <CopyToClipboard text={JSON.stringify(idNumber.extra)}
+                                             onCopy={() => alert('Copied to clipboard!')}>
+                              <MdContentPaste data-tip="Copy Details" size={16} />
+                            </CopyToClipboard>
+                          </li>
                         )
                       })
                     }
